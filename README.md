@@ -10,7 +10,7 @@ Generally, we can consider an image as a matrix whose elements are numbers betwe
 _(image height)_ x _(image width)_ x _(image channels)_. A grayscale image has 1 channel where a color image has 3 channels 
 (for an RGB). 
 
-[add input image here]
+![input_image](https://user-images.githubusercontent.com/35737777/68632461-8646d680-04e6-11ea-9106-774bfd96d0ad.jpg)
 
 We can load and plot the image using opencv library in python:
 
@@ -30,7 +30,7 @@ def load_image(image_path):
 
 input_image = load_image('input_image.jpg')
 ```
-[add image of figure 2]
+![figure2](https://user-images.githubusercontent.com/35737777/68632478-95c61f80-04e6-11ea-9b07-aaa2c8aef1d3.jpg)
 
 ## Convolution
 Each convolution operation has a kernel which could be a any matrix smaller than the original image in height and width. 
@@ -45,18 +45,18 @@ calculated as follows:
 the original.
 2. Put the first element of the kernel at every pixel of the image (element of the image matrix). Then each element of the 
 kernel will stand on top of an element of the image matrix.
-[add image of figure 3]
+![figure3](https://user-images.githubusercontent.com/35737777/68632479-95c61f80-04e6-11ea-80b2-2e86a4fcc258.jpg)
 3. Multiply each element of the kernel with its corresponding element of the image matrix (the one which is overlapped 
 with it)
 4. Sum up all product outputs and put the result at the same position in the output matrix as the center of kernel in 
 image matrix.
-[add image of figure 4]
+![figure4](https://user-images.githubusercontent.com/35737777/68632480-965eb600-04e6-11ea-8c0d-394e0e216e21.jpg)
 5. For the pixels on the border of image matrix, some elements of the kernel might stands out of the image matrix and 
 therefore does not have any corresponding element from the image matrix. In this case, we can eliminate the convolution 
 operation for these position which end up an output matrix smaller than the input (image matrix) or we can apply padding 
 to the input matrix (based on the size of the kernel we might need one or more pixels padding, in our example we just 
 need 1 pixel padding):
-[add image of figure 5]
+![figure5](https://user-images.githubusercontent.com/35737777/68632482-965eb600-04e6-11ea-8924-9cf9514ad101.jpg)
 
 As you can see in Figure 5, the output of convolution might violate the input range of [0-255]. Even though the python 
 packages would take care of it by considering the maximum value of the image as the pure white (correspond to 255 in [0-255] 
@@ -99,7 +99,7 @@ cv2.imwrite('sharpened_image.jpg', image_sharpen)
 ```
 
 and you can see the filtered image after applying sharpen filter below:
-[show image of sharpened image]
+![sharpened_image](https://user-images.githubusercontent.com/35737777/68632484-965eb600-04e6-11ea-876a-215b5946dff9.jpg)
 
 ## More Filters
 ### Edge Detection
@@ -117,7 +117,8 @@ image_edge2 = convolve2d(input_image,
                          kernel=np.array([[-1, 0, 1], [0, 0, 0], [1, 0, -1]]))
 cv2.imwrite('edge_detection2.jpg', image_edge2)
 ```
-[show all edge detection images]
+![edge_detection1](https://user-images.githubusercontent.com/35737777/68632486-965eb600-04e6-11ea-8766-9abc2cb31001.jpg)
+![edge_detection2](https://user-images.githubusercontent.com/35737777/68632477-95c61f80-04e6-11ea-9273-09831e904f52.jpg)
 
 ### Blur the Image
 #### Box Blur
@@ -134,5 +135,5 @@ imagegaussianblur = convolve2d(input_image,
                          kernel=np.array([[1, 2, 1], [2, 4, 2], [1, 2, 1]])/16.0)
 cv2.imwrite('gaussian_blur.jpg', imagegaussianblur)
 ```
-
-[Show all images of blur]
+![box_blur](https://user-images.githubusercontent.com/35737777/68632485-965eb600-04e6-11ea-848e-cd29c5682b42.jpg)
+![gaussian_blur](https://user-images.githubusercontent.com/35737777/68632483-965eb600-04e6-11ea-8107-9c00eb3478f4.jpg)
